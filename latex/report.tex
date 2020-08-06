@@ -1,0 +1,88 @@
+\documentclass[12pt,letterpaper]{article}
+%\usepackage{fullpage}
+\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+%\usepackage{lastpage}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+%\usepackage{mathrsfs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{float}
+
+\hypersetup{%
+  colorlinks=true,
+  linkcolor=blue,
+  linkbordercolor={0 0 1}
+}
+ 
+\renewcommand\lstlistingname{Code}
+\renewcommand\lstlistlistingname{Code}
+\def\lstlistingautorefname{Alg.}
+
+\lstdefinestyle{C}{
+    language        = C,
+    frame           = lines, 
+    basicstyle      = \footnotesize,
+    keywordstyle    = \color{blue},
+    stringstyle     = \color{green},
+    commentstyle    = \color{red}\ttfamily
+}
+
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+% Edit these as appropriate
+
+\pagestyle{fancyplain}
+\headheight 35pt
+\lhead{Rahul Wankhede \\ MTech (Res), CDS}                 % <-- Comment this line out for problem sets (make sure you are person #1)
+\chead{\textbf{\Large MPI Assignment}}
+\rhead{DS 288 \\ Due: Nov 17th, 2019}
+\lfoot{}
+\cfoot{}
+\rfoot{\small\thepage}
+\headsep 1.5em
+
+\begin{document}
+
+\section{Methodology}
+
+We make every process read its own part of the file into a local array.
+Every process also reads the query file into a local query-array.
+One element at a time is taken out from the query array and every process searches for it in their local array. If some process finds it, it sends a message, the global index at where the element was found, to every process (including itself). Note: the global index is calculated by adding the number of elements with processors before it to the local index. The process with rank 0 then writes the index to the output file (or -1 if search was unsuccessful). The next element is taken out from the query array and the procedure is repeated until all 50 elements have been searched.
+
+\section{Execution Times}
+
+\subsection{p = 1}
+
+The average time taken for the execution of the program is 10.3 seconds
+
+\subsection{p = 2}
+
+The average time taken for the execution of the program is 5.6 seconds
+
+Speedup = 1.84x
+
+\subsubsection{p = 4}
+
+The average time taken for the execution of the program is 3.0 seconds
+
+Speedup = 3.43x
+
+\subsubsection{p = 8}
+
+The average time taken for the execution of the program is 4.1 seconds
+
+Speedup = 2.57x
+
+\section{Observations}
+
+
+For different number of threads
+
+
+
+\end{document}
